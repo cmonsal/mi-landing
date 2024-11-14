@@ -221,11 +221,68 @@
     <header>
         <nav>
             <div class="logo">Tecnodos</div>
-            <div class="nav-links">
-                <a href="#services">Servicios</a>
-                <a href="#methodology">Metodología</a>
-                <a href="#contact">Contacto</a>
-            </div>
+           <div class="logo">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" style="height: 40px;">
+        <!-- Fondo blanco -->
+        <rect width="800" height="200" fill="white"/>
+        
+        <!-- Efecto de sombra sutil para todo el logo -->
+        <defs>
+            <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="2" result="blur"/>
+                <feOffset dx="2" dy="2"/>
+                <feMerge>
+                    <feMergeNode/>
+                    <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+            </filter>
+        </defs>
+        
+        <!-- Texto principal con gradiente -->
+        <linearGradient id="textGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#2C3E50"/>
+            <stop offset="100%" stop-color="#34495E"/>
+        </linearGradient>
+        
+        <!-- Gradiente para elementos azules -->
+        <linearGradient id="blueGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#3498DB"/>
+            <stop offset="100%" stop-color="#2980B9"/>
+        </linearGradient>
+        
+        <!-- Texto principal -->
+        <text x="50" y="140" font-family="Arial Black, Arial, sans-serif" font-size="120" font-weight="900" fill="url(#textGradient)" filter="url(#shadow)">
+            TECN
+        </text>
+        
+        <!-- Primera O con brillo -->
+        <circle cx="435" cy="100" r="45" fill="url(#blueGradient)"/>
+        <circle cx="420" cy="85" r="15" fill="white" opacity="0.2"/>
+        
+        <!-- Texto D -->
+        <text x="485" y="140" font-family="Arial Black, Arial, sans-serif" font-size="120" font-weight="900" fill="url(#textGradient)" filter="url(#shadow)">
+            D
+        </text>
+        
+        <!-- Segunda O con brillo -->
+        <circle cx="635" cy="100" r="45" fill="url(#blueGradient)"/>
+        <circle cx="620" cy="85" r="15" fill="white" opacity="0.2"/>
+        
+        <!-- Conectores mejorados -->
+        <path d="M435,100 L635,100" stroke="url(#blueGradient)" stroke-width="25"/>
+        <path d="M435,85 L635,85" stroke="#3498DB" stroke-width="12" opacity="0.8"/>
+        <path d="M435,115 L635,115" stroke="#2980B9" stroke-width="12" opacity="0.8"/>
+        
+        <!-- Puntos decorativos -->
+        <circle cx="535" cy="85" r="6" fill="white" opacity="0.4"/>
+        <circle cx="535" cy="115" r="6" fill="white" opacity="0.4"/>
+        
+        <!-- Texto S final -->
+        <text x="685" y="140" font-family="Arial Black, Arial, sans-serif" font-size="120" font-weight="900" fill="url(#textGradient)" filter="url(#shadow)">
+            S
+        </text>
+    </svg>
+</div>
         </nav>
     </header>
 
