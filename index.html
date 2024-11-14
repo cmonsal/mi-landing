@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<!-- GitHub Pages site -->
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Landing Page</title>
+    <title>Tecnodos - Consultoría en Scientometrics e Innovación</title>
     <style>
         :root {
-            --primary: #2563eb;
-            --secondary: #1e40af;
-            --text: #1f2937;
-            --background: #ffffff;
-            --accent: #dbeafe;
+            --primary: #2C3E50;    /* Azul profesional oscuro */
+            --secondary: #3498DB;   /* Azul tecnológico */
+            --accent: #E8F4F8;      /* Azul claro para fondos */
+            --text: #2C3E50;        /* Color texto principal */
+            --background: #FFFFFF;   /* Fondo principal */
+            --highlight: #16A085;   /* Verde para acentos */
         }
 
         * {
@@ -24,16 +24,17 @@
         body {
             color: var(--text);
             background-color: var(--background);
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         header {
             position: fixed;
             width: 100%;
             padding: 1rem;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         nav {
@@ -45,12 +46,11 @@
         }
 
         .logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--primary);
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-}
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+        }
 
         .nav-links {
             display: flex;
@@ -65,7 +65,7 @@
         }
 
         .nav-links a:hover {
-            color: var(--primary);
+            color: var(--secondary);
         }
 
         .hero {
@@ -74,12 +74,6 @@
             align-items: center;
             padding: 2rem;
             background: linear-gradient(135deg, var(--accent), var(--background));
-            animation: fadeIn 1s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         .hero-content {
@@ -91,22 +85,26 @@
         .hero h1 {
             font-size: clamp(2.5rem, 5vw, 4rem);
             margin-bottom: 1.5rem;
-            color: var(--text);
+            color: var(--primary);
+            line-height: 1.2;
         }
 
         .hero p {
-            font-size: clamp(1rem, 2vw, 1.25rem);
+            font-size: clamp(1.1rem, 2vw, 1.25rem);
             margin-bottom: 2rem;
             color: var(--text);
             opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .features {
+        .services {
             padding: 6rem 2rem;
             background-color: var(--background);
         }
 
-        .features-grid {
+        .services-grid {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
@@ -114,16 +112,42 @@
             gap: 2rem;
         }
 
-        .feature-card {
+        .service-card {
             padding: 2rem;
             border-radius: 1rem;
             background: white;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
 
-        .feature-card:hover {
+        .service-card:hover {
             transform: translateY(-5px);
+        }
+
+        .service-card h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .methodology {
+            padding: 6rem 2rem;
+            background: var(--accent);
+        }
+
+        .methodology-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .methodology h2 {
+            color: var(--primary);
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
         }
 
         .cta {
@@ -148,7 +172,7 @@
         }
 
         .button-primary {
-            background-color: var(--primary);
+            background-color: var(--highlight);
             color: white;
         }
 
@@ -169,7 +193,7 @@
 
         footer {
             padding: 4rem 2rem;
-            background-color: var(--text);
+            background-color: var(--primary);
             color: white;
         }
 
@@ -188,10 +212,7 @@
             
             .hero {
                 padding: 1rem;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
+                padding-top: 5rem;
             }
         }
     </style>
@@ -201,8 +222,8 @@
         <nav>
             <div class="logo">Tecnodos</div>
             <div class="nav-links">
-                <a href="#features">Características</a>
-                <a href="#about">Nosotros</a>
+                <a href="#services">Servicios</a>
+                <a href="#methodology">Metodología</a>
                 <a href="#contact">Contacto</a>
             </div>
         </nav>
@@ -210,51 +231,86 @@
 
     <section class="hero">
         <div class="hero-content">
-            <h1>Tu Producto Increíble</h1>
-            <p>Una solución innovadora para tus necesidades</p>
-            <a href="#contact" class="button button-primary">Comenzar ahora</a>
+            <h1>Potencia tu investigación e innovación con datos científicos</h1>
+            <p>Especialistas en scientometrics, análisis de innovación y vigilancia tecnológica. Transformamos datos científicos en decisiones estratégicas para impulsar tu organización.</p>
+            <a href="#contact" class="button button-primary">Solicitar consultoría</a>
         </div>
     </section>
 
-    <section class="features" id="features">
-        <div class="features-grid">
-            <div class="feature-card">
-                <h3>Característica 1</h3>
-                <p>Descripción de la primera característica de tu producto.</p>
+    <section class="services" id="services">
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Scientometrics</h3>
+                <p>Análisis cuantitativo de la producción científica y su impacto. Evaluamos tendencias, colaboraciones y áreas emergentes en investigación.</p>
+                <ul>
+                    <li>Análisis bibliométrico</li>
+                    <li>Mapeo de redes científicas</li>
+                    <li>Evaluación de impacto</li>
+                </ul>
             </div>
-            <div class="feature-card">
-                <h3>Característica 2</h3>
-                <p>Descripción de la segunda característica de tu producto.</p>
+            <div class="service-card">
+                <h3>Innovación</h3>
+                <p>Asesoramiento estratégico para gestionar y potenciar la innovación en tu organización.</p>
+                <ul>
+                    <li>Diagnóstico de capacidades</li>
+                    <li>Planificación estratégica</li>
+                    <li>Gestión de portafolio I+D</li>
+                </ul>
             </div>
-            <div class="feature-card">
-                <h3>Característica 3</h3>
-                <p>Descripción de la tercera característica de tu producto.</p>
+            <div class="service-card">
+                <h3>Vigilancia Tecnológica</h3>
+                <p>Monitoreo sistemático del entorno científico-tecnológico para identificar oportunidades y amenazas.</p>
+                <ul>
+                    <li>Análisis de patentes</li>
+                    <li>Identificación de tecnologías emergentes</li>
+                    <li>Informes de inteligencia competitiva</li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <section class="cta">
+    <section class="methodology" id="methodology">
+        <div class="methodology-content">
+            <h2>Nuestra Metodología</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>1. Análisis</h3>
+                    <p>Evaluación exhaustiva de necesidades y objetivos específicos de tu organización.</p>
+                </div>
+                <div class="service-card">
+                    <h3>2. Estrategia</h3>
+                    <p>Diseño de plan de acción personalizado basado en datos científicos y mejores prácticas.</p>
+                </div>
+                <div class="service-card">
+                    <h3>3. Implementación</h3>
+                    <p>Ejecución de soluciones y acompañamiento continuo para asegurar resultados.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta" id="contact">
         <div class="cta-content">
-            <h2>¿Listo para empezar?</h2>
-            <p>Únete a miles de usuarios satisfechos</p>
-            <a href="#contact" class="button button-secondary">Contactar</a>
+            <h2>Impulsa tu organización con datos científicos</h2>
+            <p>Descubre cómo nuestra experiencia en scientometrics e innovación puede transformar tu toma de decisiones.</p>
+            <a href="mailto:contacto@tecnodos.com" class="button button-secondary">Contactar ahora</a>
         </div>
     </section>
 
     <footer>
         <div class="footer-content">
             <div>
-                <h3>Sobre nosotros</h3>
-                <p>Información sobre tu empresa o proyecto.</p>
+                <h3>Sobre Tecnodos</h3>
+                <p>Consultora especializada en análisis científico-tecnológico para la toma de decisiones estratégicas.</p>
             </div>
             <div>
                 <h3>Contacto</h3>
-                <p>Email: contacto@tuempresa.com</p>
-                <p>Teléfono: (123) 456-7890</p>
+                <p>Email: contacto@tecnodos.com</p>
+                <p>Tel: +56 912345678</p>
             </div>
             <div>
-                <h3>Síguenos</h3>
-                <p>Enlaces a redes sociales</p>
+                <h3>Ubicación</h3>
+                <p>Santiago, Chile</p>
             </div>
         </div>
     </footer>
