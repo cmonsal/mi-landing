@@ -3,124 +3,326 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tecnodos: Transformamos datos científicos en estrategias innovadoras para impulsar tu organización">
-    <meta name="keywords" content="cienciometria, innovación, vigilancia tecnológica, consultoría científica">
     <title>Tecnodos - Consultoría en Cienciometria e Innovación</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Previous CSS remains the same */
-        
-        /* New animations and hover effects */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        :root {
+            --primary-dark: #1A2980;
+            --primary-light: #26D0CE;
+            --secondary-dark: #0F2027;
+            --secondary-light: #203A43;
+            --accent: #2C5364;
+            --background: #F4F7F6;
+            --text-light: #FFFFFF;
+            --text-dark: #0F2027;
         }
 
-        .service-card, .methodology .service-card {
-            animation: fadeIn 0.6s ease-out;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--background);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+            position: relative;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            max-width: 200px;
+        }
+
+        .logo-container svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--secondary-dark);
+            font-weight: 500;
             transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-light);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--secondary-dark), var(--secondary-light));
+            color: var(--text-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(15, 32, 39, 0.8), rgba(32, 58, 67, 0.8)),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            opacity: 0.5;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .hero-image {
+            position: absolute;
+            right: -10%;
+            top: 20%;
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(45deg, var(--primary-dark), var(--primary-light));
+            border-radius: 50%;
+            opacity: 0.2;
+            animation: float 6s infinite;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .services {
+            padding: 100px 0;
+            background-color: var(--background);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, transparent, var(--primary-light), transparent);
+            transition: all 0.4s ease;
         }
 
         .service-card:hover {
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
             transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
         }
 
-        /* Added icons to service cards */
-        .service-card-icon {
-            font-size: 3rem;
-            color: var(--secondary);
-            margin-bottom: 1rem;
-            text-align: center;
+        .service-card:hover::before {
+            left: 0;
         }
 
-        /* Social proof section */
-        .social-proof {
-            background-color: var(--accent);
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-
-        .client-logos {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .client-logos img {
-            max-height: 60px;
-            filter: grayscale(100%);
-            opacity: 0.7;
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .client-logos img:hover {
-            filter: grayscale(0%);
-            opacity: 1;
+        .btn-primary {
+            background: var(--primary-light);
+            color: var(--text-dark);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
         }
     </style>
 </head>
 <body>
-    <!-- Previous header and navigation remain the same -->
+    <header class="header">
+        <div class="container header-content">
+            <div class="logo-container">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200">
+                    <!-- Fondo blanco -->
+                    <rect width="800" height="200" fill="white"/>
+                    
+                    <!-- Efectos y gradientes -->
+                    <defs>
+                        <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+                            <feGaussianBlur stdDeviation="2" result="blur"/>
+                            <feOffset dx="2" dy="2"/>
+                            <feMerge>
+                                <feMergeNode/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                        
+                        <linearGradient id="textGradient" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#1E293B"/>
+                            <stop offset="100%" stop-color="#334155"/>
+                        </linearGradient>
+                        
+                        <linearGradient id="blueGradient" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#3B82F6"/>
+                            <stop offset="100%" stop-color="#2563EB"/>
+                        </linearGradient>
+                    </defs>
+                    
+                    <!-- Texto principal con nueva fuente -->
+                    <text x="50" y="140" font-family="'Montserrat', 'Segoe UI', sans-serif" font-size="120" font-weight="700" letter-spacing="-2" fill="url(#textGradient)" filter="url(#shadow)">
+                        TECN
+                    </text>
+                    
+                    <!-- Primera O con brillo -->
+                    <circle cx="435" cy="100" r="45" fill="url(#blueGradient)"/>
+                    <circle cx="420" cy="85" r="15" fill="white" opacity="0.2"/>
+                    
+                    <!-- Texto D -->
+                    <text x="485" y="140" font-family="'Montserrat', 'Segoe UI', sans-serif" font-size="120" font-weight="700" letter-spacing="-2" fill="url(#textGradient)" filter="url(#shadow)">
+                        D
+                    </text>
+                    
+                    <!-- Segunda O con brillo -->
+                    <circle cx="635" cy="100" r="45" fill="url(#blueGradient)"/>
+                    <circle cx="620" cy="85" r="15" fill="white" opacity="0.2"/>
+                    
+                    <!-- Conectores mejorados -->
+                    <path d="M435,100 L635,100" stroke="url(#blueGradient)" stroke-width="25"/>
+                    <path d="M435,85 L635,85" stroke="#3B82F6" stroke-width="12" opacity="0.8"/>
+                    <path d="M435,115 L635,115" stroke="#2563EB" stroke-width="12" opacity="0.8"/>
+                    
+                    <!-- Puntos decorativos -->
+                    <circle cx="535" cy="85" r="6" fill="white" opacity="0.4"/>
+                    <circle cx="535" cy="115" r="6" fill="white" opacity="0.4"/>
+                    
+                    <!-- Texto S final -->
+                    <text x="685" y="140" font-family="'Montserrat', 'Segoe UI', sans-serif" font-size="120" font-weight="700" letter-spacing="-2" fill="url(#textGradient)" filter="url(#shadow)">
+                        S
+                    </text>
+                </svg>
+            </div>
+            <nav class="nav-links">
+                <a href="#services">Servicios</a>
+                <a href="#methodology">Metodología</a>
+                <a href="#contact">Contacto</a>
+            </nav>
+        </div>
+    </header>
 
     <section class="hero">
-        <div class="hero-content">
-            <h1>Transforma Datos Científicos en Estrategias Innovadoras</h1>
-            <p>Expertos en cienciometría y análisis de innovación. Convertimos información científica compleja en decisiones estratégicas claras y accionables para impulsar el crecimiento de tu organización.</p>
-            <div>
-                <a href="#contact" class="button button-primary">Solicitar Consultoría Gratuita</a>
-                <a href="#services" class="button button-secondary" style="margin-left: 1rem;">Conocer Más</a>
-            </div>
+        <div class="hero-background"></div>
+        <div class="hero-image"></div>
+        <div class="container hero-content">
+            <h1>Transformamos Datos Científicos en Estrategias Innovadoras</h1>
+            <p>Especialistas en cienciometria, análisis de innovación y vigilancia tecnológica. Convertimos información compleja en decisiones estratégicas claras.</p>
+            <a href="#contact" class="btn btn-primary">Solicitar Consultoría</a>
         </div>
     </section>
 
     <section class="services" id="services">
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-card-icon"><i class="fas fa-chart-line"></i></div>
-                <h3>Cienciometria</h3>
-                <p>Análisis cuantitativo de la producción científica y su impacto. Evaluamos tendencias, colaboraciones y áreas emergentes en investigación.</p>
-                <ul>
-                    <li>Análisis bibliométrico</li>
-                    <li>Mapeo de redes científicas</li>
-                    <li>Evaluación de impacto</li>
-                </ul>
-            </div>
-            <div class="service-card">
-                <div class="service-card-icon"><i class="fas fa-lightbulb"></i></div>
-                <h3>Innovación</h3>
-                <p>Asesoramiento estratégico para gestionar y potenciar la innovación en tu organización.</p>
-                <ul>
-                    <li>Diagnóstico de capacidades</li>
-                    <li>Planificación estratégica</li>
-                    <li>Gestión de portafolio I+D</li>
-                </ul>
-            </div>
-            <div class="service-card">
-                <div class="service-card-icon"><i class="fas fa-search-plus"></i></div>
-                <h3>Vigilancia Tecnológica</h3>
-                <p>Monitoreo sistemático del entorno científico-tecnológico para identificar oportunidades y amenazas.</p>
-                <ul>
-                    <li>Análisis de patentes</li>
-                    <li>Identificación de tecnologías emergentes</li>
-                    <li>Informes de inteligencia competitiva</li>
-                </ul>
+        <div class="container">
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Cienciometria</h3>
+                    <p>Análisis cuantitativo de la producción científica y su impacto.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Innovación</h3>
+                    <p>Asesoramiento estratégico para gestionar y potenciar la innovación.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Vigilancia Tecnológica</h3>
+                    <p>Monitoreo sistemático del entorno científico-tecnológico.</p>
+                </div>
             </div>
         </div>
     </section>
-
-    <!-- New Social Proof Section -->
-    <section class="social-proof">
-        <h2>Organizaciones que Confían en Nosotros</h2>
-        <div class="client-logos">
-            <img src="https://via.placeholder.com/150x60?text=Universidad" alt="Cliente Universidad">
-            <img src="https://via.placeholder.com/150x60?text=Empresa" alt="Cliente Empresa">
-            <img src="https://via.placeholder.com/150x60?text=Startup" alt="Cliente Startup">
-        </div>
-    </section>
-
-    <!-- Rest of the previous content remains the same -->
 </body>
 </html>
