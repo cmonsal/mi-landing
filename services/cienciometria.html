@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Servicios de Cienciometría - Análisis y evaluación de la producción científica">
+    <title>Cienciometría - Tecnodos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-dark: #1A2980;
+            --primary-light: #26D0CE;
+            --secondary-dark: #0F2027;
+            --secondary-light: #203A43;
+            --accent: #2C5364;
+            --background: #F4F7F6;
+            --text-light: #FFFFFF;
+            --text-dark: #0F2027;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--background);
+            overflow-x: hidden;
+            width: 100%;
+            min-width: 320px;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1140px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 20px;
+            padding-right: 20px;
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+            padding: 1rem 0;
+            position: relative;
+            width: 100vw;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: opacity 0.3s;
+        }
+
+        .logo-container:hover {
+            opacity: 0.85;
+        }
+
+        .logo-text {
+            font-size: 1.75rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+        }
+
+        .service-header {
+            background: linear-gradient(135deg, var(--secondary-dark), var(--secondary-light));
+            color: var(--text-light);
+            padding: 8rem 0 4rem;
+            text-align: center;
+            width: 100vw;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            color: var(--text-light);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 1.125rem;
+            letter-spacing: 0.01em;
+        }
+
+        .back-button i {
+            margin-right: 0.75rem;
+            font-size: 1.25rem;
+        }
+
+        .back-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .service-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .service-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .service-content {
+            padding: 4rem 0;
+            width: 100%;
+            box-sizing: border-box;
+            margin: 0 auto;
+        }
+
+        .service-section {
+            margin-bottom: 4rem;
+            max-width: 1140px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 20px;
+        }
+
+        .service-section h2 {
+            color: var(--primary-dark);
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .service-section p {
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            font-size: 1.125rem;
+            color: var(--text-dark);
+            opacity: 0.9;
+        }
+
+        .service-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0;
+        }
+
+        .service-section ul li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1.25rem;
+            font-size: 1.125rem;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        .service-section ul li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+            border-radius: 50%;
+        }
+
+        .service-section ul li strong {
+            color: var(--primary-dark);
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            text-align: center;
+            padding: 1.25rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary-dark);
+        }
+
+        .feature-card p {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: var(--text-dark);
+            opacity: 0.85;
+        }
+
+        @media screen and (max-width: 1200px) {
+            .container, .service-section {
+                max-width: 100%;
+            }
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .container, .service-section {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .service-header {
+                padding: 4rem 0;
+                margin-bottom: 3rem;
+            }
+            
+            .service-section {
+                margin-bottom: 3rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .feature-card {
+                padding: 2rem;
+            }
+
+            .service-header h1 {
+                font-size: 2rem;
+            }
+
+            .service-header p {
+                font-size: 1rem;
+            }
+
+            .service-section h2 {
+                font-size: 2rem;
+            }
+
+            .service-section p {
+                font-size: 1rem;
+            }
+
+            .service-section ul li {
+                font-size: 1rem;
+                padding-left: 1.75rem;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container header-content">
+            <a href="../index.html" class="logo-container">
+                <div class="logo-text">Tecnodos</div>
+            </a>
+            <nav class="nav-links">
+                <a href="../index.html#services">SERVICIOS</a>
+                <a href="../index.html#contact">CONTACTO</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="service-header">
+        <div class="container">
+            <a href="../index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+                Volver al inicio
+            </a>
+            <h1>Cienciometría</h1>
+            <p>Análisis y evaluación de la producción científica</p>
+        </div>
+    </section>
+
+    <div class="service-content container">
+        <div class="service-section">
+            <h2>Análisis Cienciométrico</h2>
+            <p>Nuestro servicio de cienciometría proporciona un análisis profundo y detallado de la producción científica, permitiendo evaluar el impacto y la calidad de la investigación. Utilizamos metodologías avanzadas y herramientas especializadas para ofrecer insights valiosos sobre el desarrollo científico y académico.</p>
+        </div>
+
+        <div class="service-section">
+            <h2>Nuestros Servicios de Cienciometría</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>Análisis Bibliométrico</h3>
+                    <p>Evaluación cuantitativa de publicaciones científicas y su impacto en la comunidad académica.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-network-wired"></i>
+                    <h3>Mapeo Científico</h3>
+                    <p>Visualización y análisis de redes de colaboración y estructuras de conocimiento.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-search"></i>
+                    <h3>Indicadores de Impacto</h3>
+                    <p>Medición y análisis de indicadores bibliométricos y altmétricos.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-file-alt"></i>
+                    <h3>Informes Personalizados</h3>
+                    <p>Elaboración de informes detallados según las necesidades específicas de cada cliente.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-section">
+            <h2>Beneficios</h2>
+            <ul>
+                <li><strong>Evaluación objetiva del impacto de la investigación</strong></li>
+                <li><strong>Identificación de tendencias y áreas emergentes</strong></li>
+                <li><strong>Optimización de estrategias de investigación</strong></li>
+                <li><strong>Mejora en la toma de decisiones académicas</strong></li>
+                <li><strong>Posicionamiento estratégico en el campo científico</strong></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

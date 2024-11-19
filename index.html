@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tecnodos - Expertos en consultoría de Cienciometria e Innovación. Soluciones personalizadas para impulsar su investigación y desarrollo.">
+    <meta name="keywords" content="cienciometria, innovación, consultoría, investigación, desarrollo">
     <title>Tecnodos - Consultoría en Cienciometria e Innovación</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
             --primary-dark: #1A2980;
@@ -30,9 +33,20 @@
         }
 
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+            0% { r: 3; }
+            50% { r: 4; }
+            100% { r: 3; }
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
         }
 
         body {
@@ -44,51 +58,76 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1140px;
             margin: 0 auto;
-            padding: 0 15px;
+            padding: 0 20px;
             position: relative;
+            width: 100%;
         }
 
         .logo-container {
             display: flex;
             align-items: center;
-            max-width: 200px;
+            font-family: 'Inter', sans-serif;
+            text-decoration: none;
+            color: var(--primary-dark);
         }
 
-        .logo-container svg {
-            max-width: 100%;
-            height: auto;
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent; /* Fallback */
+            margin-left: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 24px;
         }
 
         .header {
-            position: fixed;
+            position: relative;
             width: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background-color: var(--background);
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
+            width: 100%;
         }
 
         .nav-links {
             display: flex;
-            gap: 20px;
+            gap: 30px;
         }
 
         .nav-links a {
             text-decoration: none;
             color: var(--secondary-dark);
             font-weight: 500;
+            font-size: 16px;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            padding: 5px 0;
             transition: all 0.3s ease;
             position: relative;
+            font-family: 'Inter', sans-serif;
         }
 
         .nav-links a::after {
@@ -96,23 +135,44 @@
             position: absolute;
             width: 0;
             height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--primary-light);
-            transition: width 0.3s;
+            bottom: 0;
+            left: 50%;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-dark);
         }
 
         .nav-links a:hover::after {
             width: 100%;
         }
 
+        .nav-links a.active {
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links a {
+                font-size: 14px;
+                gap: 20px;
+            }
+        }
+
         .hero {
-            height: 100vh;
+            position: relative;
+            height: 70vh;
+            min-height: 500px;
+            max-height: 800px;
             display: flex;
             align-items: center;
-            background: linear-gradient(135deg, var(--secondary-dark), var(--secondary-light));
-            color: var(--text-light);
-            position: relative;
             overflow: hidden;
         }
 
@@ -122,48 +182,86 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                linear-gradient(rgba(15, 32, 39, 0.8), rgba(32, 58, 67, 0.8)),
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
-            opacity: 0.5;
+            background: linear-gradient(135deg, var(--secondary-dark), var(--secondary-light));
+        }
+
+        .gallery-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 10px;
+            padding: 20px;
+            opacity: 0.15;
             z-index: 1;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            transform: scale(0.95);
+            transition: all 0.5s ease;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg,
+                rgba(26, 41, 128, 0.7),
+                rgba(38, 208, 206, 0.7)
+            );
         }
 
         .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
             position: relative;
             z-index: 2;
             text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        .hero-image {
-            position: absolute;
-            right: -10%;
-            top: 20%;
-            width: 400px;
-            height: 400px;
-            background: linear-gradient(45deg, var(--primary-dark), var(--primary-light));
-            border-radius: 50%;
-            opacity: 0.2;
-            animation: float 6s infinite;
-            z-index: 1;
+        @keyframes fadeScale {
+            0% { opacity: 0.7; transform: scale(0.95); }
+            50% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0.7; transform: scale(0.95); }
+        }
+
+        .gallery-item {
+            animation: fadeScale 8s infinite;
+            animation-delay: calc(var(--delay) * 1s);
         }
 
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
             color: var(--text-light);
         }
 
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
             color: rgba(255,255,255,0.8);
         }
 
         .services {
-            padding: 100px 0;
+            padding: 80px 0;
             background-color: var(--background);
         }
 
@@ -171,28 +269,33 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
+            margin-top: 40px;
         }
 
         .service-card {
             background: white;
-            border-radius: 10px;
-            padding: 30px;
-            text-align: center;
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: left;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .service-card::before {
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(to right, transparent, var(--primary-light), transparent);
-            transition: all 0.4s ease;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-light), var(--primary-dark));
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
         .service-card:hover {
@@ -201,7 +304,57 @@
         }
 
         .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-card h3 {
+            color: var(--primary-dark);
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0;
+            position: relative;
+            display: inline-block;
+            letter-spacing: -0.5px;
+        }
+
+        .service-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
             left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-light), var(--primary-dark));
+            border-radius: 2px;
+        }
+
+        .service-card p {
+            color: var(--text-dark);
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 0;
+            opacity: 0.85;
+            font-weight: 400;
+        }
+
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 0 20px;
+            }
+
+            .service-card {
+                padding: 30px 25px;
+            }
+
+            .service-card h3 {
+                font-size: 22px;
+            }
+
+            .service-card p {
+                font-size: 15px;
+            }
         }
 
         .btn {
@@ -223,106 +376,401 @@
         .btn-primary:hover {
             transform: translateY(-5px);
         }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 24px;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        .social-links i {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 0 15px;
+            }
+            
+            .hero {
+                height: 60vh;
+                min-height: 400px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* Smooth Scroll Behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+        }
+
+        .footer {
+            background: var(--secondary-dark);
+            color: var(--text-light);
+            padding: 60px 0 30px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            color: var(--primary-light);
+            margin-bottom: 20px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+            overflow-y: auto; /* Enable vertical scrolling */
+            padding: 20px;
+        }
+
+        .modal-content {
+            position: relative;
+            background: white;
+            margin: 20px auto;
+            padding: 2.5rem;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        .modal-content h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .modal-content > p {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            opacity: 0.85;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.75rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            font-family: inherit;
+            line-height: 1.4;
+            color: var(--text-dark);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #9ca3af;
+            opacity: 0.8;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-dark);
+            box-shadow: 0 0 0 2px rgba(var(--primary-dark-rgb), 0.1);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 0.5rem;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 1.5rem;
+            top: 1.5rem;
+            font-size: 1.75rem;
+            cursor: pointer;
+            color: var(--text-dark);
+            transition: color 0.3s;
+            opacity: 0.6;
+            line-height: 1;
+        }
+
+        .close-modal:hover {
+            color: var(--primary-dark);
+            opacity: 1;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
     </style>
 </head>
 <body>
     <header class="header">
         <div class="container header-content">
-            <div class="logo-container">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200">
-                    <!-- Fondo blanco -->
-                    <rect width="800" height="200" fill="white"/>
-                    
-                    <!-- Efectos y gradientes -->
-                    <defs>
-                        <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-                            <feGaussianBlur stdDeviation="2" result="blur"/>
-                            <feOffset dx="2" dy="2"/>
-                            <feMerge>
-                                <feMergeNode/>
-                                <feMergeNode in="SourceGraphic"/>
-                            </feMerge>
-                        </filter>
-                        
-                        <linearGradient id="textGradient" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="0%" stop-color="#1E293B"/>
-                            <stop offset="100%" stop-color="#334155"/>
-                        </linearGradient>
-                        
-                        <linearGradient id="blueGradient" x1="0" y1="0" x2="1" y2="1">
-                            <stop offset="0%" stop-color="#3B82F6"/>
-                            <stop offset="100%" stop-color="#2563EB"/>
-                        </linearGradient>
-                    </defs>
-                    
-                    <!-- Texto principal con nueva fuente -->
-                    <text x="50" y="140" font-family="'Montserrat', 'Segoe UI', sans-serif" font-size="120" font-weight="700" letter-spacing="-2" fill="url(#textGradient)" filter="url(#shadow)">
-                        TECN
-                    </text>
-                    
-                    <!-- Primera O con brillo -->
-                    <circle cx="435" cy="100" r="45" fill="url(#blueGradient)"/>
-                    <circle cx="420" cy="85" r="15" fill="white" opacity="0.2"/>
-                    
-                    <!-- Texto D -->
-                    <text x="485" y="140" font-family="'Montserrat', 'Segoe UI', sans-serif" font-size="120" font-weight="700" letter-spacing="-2" fill="url(#textGradient)" filter="url(#shadow)">
-                        D
-                    </text>
-                    
-                    <!-- Segunda O con brillo -->
-                    <circle cx="635" cy="100" r="45" fill="url(#blueGradient)"/>
-                    <circle cx="620" cy="85" r="15" fill="white" opacity="0.2"/>
-                    
-                    <!-- Conectores mejorados -->
-                    <path d="M435,100 L635,100" stroke="url(#blueGradient)" stroke-width="25"/>
-                    <path d="M435,85 L635,85" stroke="#3B82F6" stroke-width="12" opacity="0.8"/>
-                    <path d="M435,115 L635,115" stroke="#2563EB" stroke-width="12" opacity="0.8"/>
-                    
-                    <!-- Puntos decorativos -->
-                    <circle cx="535" cy="85" r="6" fill="white" opacity="0.4"/>
-                    <circle cx="535" cy="115" r="6" fill="white" opacity="0.4"/>
-                    
-                    <!-- Texto S final -->
-                    <text x="685" y="140" font-family="'Montserrat', 'Segoe UI', sans-serif" font-size="120" font-weight="700" letter-spacing="-2" fill="url(#textGradient)" filter="url(#shadow)">
-                        S
-                    </text>
-                </svg>
-            </div>
+            <a href="#" class="logo-container">
+                <div class="logo-icon">T</div>
+                <div class="logo-text">Tecnodos</div>
+            </a>
             <nav class="nav-links">
-                <a href="#services">Servicios</a>
-                <a href="#methodology">Metodología</a>
-                <a href="#contact">Contacto</a>
+                <a href="#services" class="active">SERVICIOS</a>
+                <a href="#contact" id="contact-link">CONTACTO</a>
             </nav>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="hero-background"></div>
-        <div class="hero-image"></div>
-        <div class="container hero-content">
-            <h1>Transformamos Datos Científicos en Estrategias Innovadoras</h1>
-            <p>Especialistas en cienciometria, análisis de innovación y vigilancia tecnológica. Convertimos información compleja en decisiones estratégicas claras.</p>
-            <a href="#contact" class="btn btn-primary">Solicitar Consultoría</a>
-        </div>
-    </section>
-
-    <section class="services" id="services">
-        <div class="container">
-            <div class="services-grid">
-                <div class="service-card">
-                    <h3>Cienciometria</h3>
-                    <p>Análisis cuantitativo de la producción científica y su impacto.</p>
+    <main>
+        <section class="hero">
+            <div class="hero-background"></div>
+            <div class="gallery-container">
+                <div class="gallery-item" style="--delay: 0">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Data Visualization">
+                    <div class="gallery-overlay"></div>
                 </div>
-                <div class="service-card">
-                    <h3>Innovación</h3>
-                    <p>Asesoramiento estratégico para gestionar y potenciar la innovación.</p>
+                <div class="gallery-item" style="--delay: 1">
+                    <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Digital Technology">
+                    <div class="gallery-overlay"></div>
                 </div>
-                <div class="service-card">
-                    <h3>Vigilancia Tecnológica</h3>
-                    <p>Monitoreo sistemático del entorno científico-tecnológico.</p>
+                <div class="gallery-item" style="--delay: 2">
+                    <img src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Network Connections">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" style="--delay: 3">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Innovation">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" style="--delay: 2">
+                    <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Research">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" style="--delay: 3">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Technology">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" style="--delay: 0">
+                    <img src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Analytics">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" style="--delay: 1">
+                    <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Data Science">
+                    <div class="gallery-overlay"></div>
                 </div>
             </div>
+            <div class="hero-content">
+                <h1>Transformamos Datos Científicos en Estrategias Innovadoras</h1>
+                <p>Especialistas en cienciometria, análisis de innovación y vigilancia tecnológica. Convertimos información compleja en decisiones estratégicas claras.</p>
+                <a href="#contact" class="cta-button" id="contact-link">Contáctanos</a>
+            </div>
+        </section>
+
+        <section class="services" id="services">
+            <div class="container">
+                <div class="services-grid">
+                    <a href="services/cienciometria.html" class="service-card">
+                        <h3>Cienciometría</h3>
+                        <p>Análisis cuantitativo de la producción científica y su impacto.</p>
+                    </a>
+                    <a href="services/innovacion.html" class="service-card">
+                        <h3>Innovación</h3>
+                        <p>Asesoramiento estratégico para gestionar y potenciar la innovación.</p>
+                    </a>
+                    <a href="services/vigilancia.html" class="service-card">
+                        <h3>Vigilancia Tecnológica</h3>
+                        <p>Monitoreo sistemático del entorno científico-tecnológico.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer" role="contentinfo">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h4>Contacto</h4>
+                        <p>Email: tecnodos.spa@gmail.com</p>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Síguenos</h4>
+                        <div class="social-links">
+                            <a href="#" target="_blank" rel="noopener" aria-label="Síguenos en LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                            <a href="#" target="_blank" rel="noopener" aria-label="Síguenos en Twitter">
+                                <i class="fab fa-twitter"></i>
+                                <span>Twitter</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 Tecnodos. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Contáctanos</h2>
+            <p>Estamos aquí para ayudarte. Cuéntanos sobre tu proyecto o consulta.</p>
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Nombre</label>
+                    <input type="text" id="name" name="name" placeholder="Tu nombre completo" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" name="email" placeholder="ejemplo@correo.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Teléfono</label>
+                    <input type="tel" id="phone" name="phone" placeholder="(Opcional) Tu número de contacto">
+                </div>
+                <div class="form-group">
+                    <label for="message">Mensaje</label>
+                    <textarea id="message" name="message" placeholder="Describe tu proyecto o consulta" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Enviar mensaje</button>
+            </form>
         </div>
-    </section>
+    </div>
+
+    <script>
+        // Modal functionality
+        const modal = document.getElementById('contactModal');
+        const closeBtn = document.querySelector('.close-modal');
+        const contactBtns = document.querySelectorAll('a[href="#contact"]');
+        const contactForm = document.getElementById('contactForm');
+
+        contactBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Here you would typically send the form data to your server
+            alert('¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            contactForm.reset();
+        });
+    </script>
 </body>
 </html>
