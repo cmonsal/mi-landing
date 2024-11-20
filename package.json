@@ -1,0 +1,12 @@
+{
+  "name": "tecnodos-landing",
+  "version": "1.0.0",
+  "description": "Tecnodos Landing Page",
+  "main": "index.js",
+  "scripts": {
+    "start": "serve -s . --single"
+  },
+  "dependencies": {
+    "serve": "^14.2.1"
+  }
+}
